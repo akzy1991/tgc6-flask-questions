@@ -7,37 +7,38 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="POST">
+    <form action="{{url_for('process_booking')}}" method="POST">
         <div>
             <label>Customer Name</label>
-            <inpt type="text"/>
+            <input type="text" name="name"/>
         </div>
         <div>
             <label>Sitting Type</label>
-            <input type="radio"/>Indoors
-            <input type="radio"/>Outdoors
-            <input type="radio"/>Smoking
+            <input type="radio" name="sitting" value="indoors"/>Indoors
+            <input type="radio" name="sitting" value="outdoors"/>Outdoors
+            <input type="radio" name="sitting" value="smoking"/>Smoking
         </div>
         <div>
             <label>Time</label>
-            <input type="radio"/>Morning
-            <input type="radio"/>Afternoon
-            <input type="radio"/>Evening
+            <input type="radio" name="time" value="morning"/>Morning
+            <input type="radio" name="time" value="Afternoon"/>Afternoon
+            <input type="radio" name="time" value="evening"/>Evening
         </div>
         <div>
             <label>Services</label>
-            <input type="checkbox"/>Wet Napkins
-            <input type="checkbox"/>Free flow drinks
-            <input type="checkbox"/>Baby Seats
+            <input type="checkbox" name="services" value="wet-napkins"/>Wet Napkins
+            <input type="checkbox" name="services"  value="free-flow-drinks"/>Free flow drinks
+            <input type="checkbox" name="services"  value="baby-seats"/>Baby Seats
         </div>
         <div>
             <label>How did you hear about us</label>
-            <select>
+            <select name="hear-about-us">
                 <option>Word of mouth</option>
                 <option>Social media</option>
                 <option>Reviews</option>
             </select>
         </div>
+        <input type="submit" value="submit">
     </form>
 </body>
 </html>
