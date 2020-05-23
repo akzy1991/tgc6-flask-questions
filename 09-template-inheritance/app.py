@@ -3,16 +3,13 @@ import os
 
 app = Flask(__name__)
 
-
 @app.route('/')
 def index():
-    return render_template('index.template.html')
+    return render_template('index.html')
 
-
-@app.route('/products')
-def products():
-    return render_template('products.template.html')
-
+@app.route('/gallery')
+def gallery():
+    return render_template('gallery.html')
 
 # "magic code" -- boilerplate
 if __name__ == '__main__':

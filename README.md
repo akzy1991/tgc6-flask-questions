@@ -16,3 +16,6 @@
 
 
 Credits for testing procedure: https://riptutorial.com/flask/example/4122/testing-our-hello-world-app
+
+## Pull from original repoistory
+

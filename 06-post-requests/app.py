@@ -3,6 +3,7 @@ import os
 
 app = Flask(__name__)
 
+
 # your code here!
 @app.route("/")
 def hello():
@@ -11,6 +12,7 @@ def hello():
 
 @app.route("/", methods=['POST'])
 def processHello():
+<<<<<<< HEAD
     fn = request.form.get('first-name')
     ln = request.form.get('last-name')
     return render_template('process-hello.template.html', fn=fn, ln=ln)
@@ -27,6 +29,9 @@ def calculate_results():
     number2 = int(request.form.get('number2'))
     sum = number1 + number2
     return render_template("results.template.html", result=sum)
+=======
+    return render_template('process-hello.template.html')
+>>>>>>> 78a6ef75ac1bb4fe166038e4635ca0ef524a5b40
 
 
 # "magic code" -- boilerplate
