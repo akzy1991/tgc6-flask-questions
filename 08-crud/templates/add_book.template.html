@@ -1,0 +1,24 @@
+{% extends 'base.template.html' %}
+{%block title%}
+Add book
+{%endblock%}
+{%block header%}
+Add Book
+{%endblock%}
+{%block content%}
+<form method="POST">
+    <div class="form-group">
+        <label>ISBN</label>
+        <input class="form-control" type="text" name="isbn">
+    </div>
+    <div class="form-group">
+        <label>Title</label>
+        <input class="form-control" type="text" name="title">
+    </div>
+    <div class="form-group">
+        <label>Author</label>
+        <input class="form-control" type="text" name="author">
+    </div>
+    <input class="btn btn-primary" type="submit" value="Add Book">
+</form>
+{%endblock%}

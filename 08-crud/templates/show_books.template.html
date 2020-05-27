@@ -1,0 +1,16 @@
+{% extends 'base.template.html' %}
+{% block title %}
+BOOKS
+{%endblock%}
+
+{% block header %}
+BOOKS
+{%endblock%}
+
+{% block content %}
+<ul>
+    {% for b in books%}
+    <li>ISBN:{{b.ISBN}}, {{b.title}} by {{b.author}}</li>
+    {%endfor%}
+</ul>
+{%endblock%}
