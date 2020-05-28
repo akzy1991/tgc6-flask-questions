@@ -40,6 +40,44 @@ def process_add_book():
     return redirect(url_for('show_books'))
 
 
+@app.route('/edit/<isbn>')
+def edit_book(isbn):
+    book = find_book_with_isbn(isbn)
+    return render_template('edit_book.template.html', book=book)
+
+
+@app.route('/edit/<isbn>', methods=['POST'])
+def process_edit_book(isbn):
+    all_books = read_books()
+    book_to_edit = find_book_with_isbn(isbn)
+    for i in range(len(all_books)):
+        if all_books[i]['isbn'] == book_to_edit['isbn']:
+            book_to_edit['isbn'] = request.form.get('isbn')
+            book_to_edit['title'] = request.form.get('title')
+            book_to_edit['author'] = request.form.get('author')
+            all_books[i] = book_to_edit
+    rewrite_book(all_books)
+    return redirect(url_for('show_books'))
+
+
+@app.route('/delete_book/<isbn>')
+def confirm_delete(isbn):
+    book = find_book_with_isbn(isbn)
+    return render_template('confirm_delete.template.html', book=book)
+
+@app.route('/delete_book/<isbn>', methods=['POST'])
+def delete_book(isbn):
+    all_books = read_books()
+    book_to_delete = find_book_with_isbn(isbn)
+    for i in range(len(all_books)):
+        if all_books[i]['isbn'] == book_to_delete['isbn']:
+            del all_books[i]
+            break
+    rewrite_book(all_books)
+    return redirect(url_for('show_books'))
+
+
+
 def read_books():
     library = []
     with open('books.csv', 'r', newline='\n') as books:
@@ -47,7 +85,7 @@ def read_books():
         next(reader)
         for line in reader:
             library.append({
-                'ISBN': line[0],
+                'isbn': line[0],
                 'title': line[1],
                 'author': line[2]
             })
@@ -70,6 +108,23 @@ def find_book(title):
         if title in b['title'].lower():
             books.append(b)
     return books
+
+
+def find_book_with_isbn(isbn):
+    library = read_books()
+    book = {}
+    for b in library:
+        if isbn == b['isbn']:
+            book = b
+    return book
+
+
+def rewrite_book(all_books):
+    with open('books.csv', 'w', newline="\n") as fp:
+        writer = csv.writer(fp, delimiter=",")
+        writer.writerow(['isbn', 'title', 'author'])
+        for b in all_books:
+            writer.writerow([b['isbn'], b['title'], b['author']])
 
 
 # "magic code" -- boilerplate

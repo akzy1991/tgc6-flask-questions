@@ -1,0 +1,27 @@
+{% extends 'base.template.html' %}
+
+{% block title %}
+Edit Book
+{%endblock%}
+
+{% block header %}
+Editing Book with ISBN:{{book.isbn}}
+{%endblock%}
+
+{% block content %}
+<form method="POST">
+    <div class="form-group">
+        <label for="isbn">ISBN</label>
+        <input class="form-control" type="text" name="isbn" value="{{book.isbn}}">
+    </div>
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input class="form-control" type="text" name="title" value="{{book.title}}">
+    </div>
+    <div class="form-group">
+        <label for="author">Author</label>
+        <input class="form-control" type="text" name="author" value="{{book.author}}">
+    </div>
+    <input class="btn btn-primary" type="submit" value="confirm">
+</form>
+{%endblock%}

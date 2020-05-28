@@ -1,0 +1,15 @@
+{% extends 'base.template.html' %}
+{% block title %}
+confirm delete
+{%endblock%}
+{% block header %}
+Confirm Deletion
+{%endblock%}
+{% block content %}
+<h4>CONFIRM TO DELETE BOOK WITH ISBN:{{book.isbn}}?</h4>
+<p>Changes are irreversible</p>
+<form method="POST">
+<input class="btn btn-danger" type="submit" value="Confirm">
+<a class="btn btn-primary" href="{{url_for('show_books')}}">No</a>
+</form>
+{%endblock%}
