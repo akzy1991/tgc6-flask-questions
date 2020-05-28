@@ -3,13 +3,16 @@ import os
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def home():
     return render_template('home.template.html')
 
+
 @app.route('/book')
 def book():
     return render_template('book.template.html')
+
 
 @app.route('/process_booking', methods=['POST'])
 def process_booking():
@@ -17,15 +20,15 @@ def process_booking():
     sitting = request.form.get('sitting')
     time = request.form.get('time')
     services = request.form.getlist('services')
-    hear_about_us = request.form.get('hear-about-us')
+    hear_about = request.form.get('hear-about')
 
     return render_template('form-process.template.html',
-                            name=name,
-                            sitting=sitting,
-                            time=time,
-                            services=", ".join(services),
-                            hear_about_us=hear_about_us)
-
+                           name=name,
+                           sitting=sitting,
+                           time=time,
+                           services=", ".join(services),
+                           hear_about=hear_about
+                           )
 
 
 # "magic code" -- boilerplate
